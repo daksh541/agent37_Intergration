@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #07122B;
+  --mut: #4E596D;
+  --dim: #8896A6;
+  --card: #FFFFFF;
+  --cardline: rgba(7, 18, 43, 0.09);
+  --tint: #F7F9FB;
+  --shd: 0 14px 40px -12px rgba(7, 18, 43, 0.09), 0 2px 6px -1px rgba(7, 18, 43, 0.03);
+  --live: #309EFE;
+  --good: #24AB5C;
+  --warn: #F59E0B;
+  --danger: #EF4444;
+  --brand: #309EFE;
+  --brand-cyan: #B2E6DE;
+  --dark-bg: #030712;
+  --dark-card: rgba(255, 255, 255, 0.04);
+  --dark-border: rgba(255, 255, 255, 0.11);
+  --dark-ink: #FFFFFF;
+  --font-display: 'Funnel Display', -apple-system, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #FAFAFA;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(7, 18, 43, 0.15);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(7, 18, 43, 0.3);
+}
+
+.live-invoice-scroller {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(7, 18, 43, 0.25) transparent;
+}
+.live-invoice-scroller::-webkit-scrollbar {
+  width: 7px;
+}
+.live-invoice-scroller::-webkit-scrollbar-track {
+  background: rgba(7, 18, 43, 0.03);
+}
+.live-invoice-scroller::-webkit-scrollbar-thumb {
+  background: rgba(7, 18, 43, 0.25);
+  border-radius: 4px;
+}
+.live-invoice-scroller::-webkit-scrollbar-thumb:hover {
+  background: #309EFE;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Typography classes */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Subtle dot-matrix stage background */
+.stage-dotted-bg {
+  position: relative;
+  background-color: #FAFCFE;
+  background-image: radial-gradient(rgba(7, 18, 43, 0.075) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  background-position: 13px 13px;
+}
+
+/* Glow orbs */
+.glow-orb-cyan {
+  position: absolute;
+  width: 45vw;
+  height: 45vh;
+  background: radial-gradient(circle, rgba(178, 230, 222, 0.38) 0%, rgba(178, 230, 222, 0) 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-orb-blue {
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
+  background: radial-gradient(circle, rgba(48, 158, 254, 0.32) 0%, rgba(48, 158, 254, 0) 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Topbar */
+.wb-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+  z-index: 1000;
+  background: rgba(3, 7, 18, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  transition: all 0.25s ease;
+}
+
+.wb-topbar.light-theme {
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid rgba(7, 18, 43, 0.1);
+  box-shadow: 0 1px 3px rgba(7, 18, 43, 0.04);
+}
+
+/* Tracker Breadcrumbs */
+.wb-tracker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+}
+.wb-tracker::-webkit-scrollbar {
+  display: none;
+}
+
+.tracker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.tracker-item.active {
+  color: #309EFE;
+}
+.tracker-item.completed {
+  color: #24AB5C;
+}
+
+.tracker-arrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #309EFE;
+  color: #07122B;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 9px 18px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: 0 2px 10px rgba(48, 158, 254, 0.35);
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #4ab1ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(48, 158, 254, 0.45);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Coucou Notch */
+.coucou-notch-container {
+  position: fixed;
+  top: 68px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.coucou-notch {
+  background: #07122B;
+  color: #FFFFFF;
+  border: 1px solid rgba(48, 158, 254, 0.4);
+  border-radius: 999px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 24px rgba(48, 158, 254, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.coucou-notch:hover {
+  border-color: #309EFE;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45), 0 0 32px rgba(48, 158, 254, 0.38);
+}
+
+.coucou-notch.expanded {
+  border-radius: 20px;
+  padding: 16px 24px;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 480px;
+}
+
+/* Animations */
+@keyframes wbDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.dot-pulse {
+  animation: wbDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes wbBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.caret-blink {
+  animation: wbBlink 0.9s infinite steps(1);
+}
+
+/* Stamped Paid Badge */
+.paid-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #24AB5C;
+  color: #24AB5C;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+  background: rgba(36, 171, 92, 0.08);
+}
+
+/* Card components */
+.wb-card {
+  background: var(--card);
+  border: 1px solid var(--cardline);
+  border-radius: 16px;
+  box-shadow: var(--shd);
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.wb-card:hover {
+  box-shadow: 0 20px 48px -14px rgba(7, 18, 43, 0.12), 0 3px 8px -1px rgba(7, 18, 43, 0.04);
+}
+
+/* Tag Pills */
+.pill-authorized {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #24AB5C;
+  background: rgba(36, 171, 92, 0.08);
+  border: 1px solid rgba(36, 171, 92, 0.35);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.pill-franchised {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--mut);
+  background: var(--tint);
+  border: 1px solid var(--cardline);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.pill-broker {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #B45309;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
