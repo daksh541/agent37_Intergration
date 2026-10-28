@@ -201,7 +201,7 @@ export const CustomsBillOfEntry: React.FC<CustomsProps> = ({
 
         <p style={{ fontSize: '12px', color: 'var(--mut)', lineHeight: 1.5, marginBottom: 12 }}>
           Every filing is checked before it goes in. Supplier invoice carried wrong tariff code;
-          AGENT37 caught it, verified spec with engineering, and filed clean.
+          Docket caught it, verified spec with engineering, and filed clean.
         </p>
 
         <div

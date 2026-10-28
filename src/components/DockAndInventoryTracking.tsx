@@ -330,7 +330,7 @@ export const DockAndInventoryTracking: React.FC<DockAndInventoryTrackingProps> =
           }}
         >
           <CheckCircle2 size={17} />
-          [PAID · AGENT37] · Zero Variance 3-Way Match Reconciled & Stamped
+          [PAID · DOCKET] · Zero Variance 3-Way Match Reconciled & Stamped
         </div>
       )}
     </div>

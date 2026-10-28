@@ -251,7 +251,7 @@ export const GoogleMapsSourcing: React.FC<GoogleMapsSourcingProps> = ({
         <div
           style={{
             position: 'relative',
-            height: 250,
+            height: 200,
             background: '#FFFFFF',
             overflow: 'hidden',
             width: '100%'
@@ -522,23 +522,20 @@ export const GoogleMapsSourcing: React.FC<GoogleMapsSourcingProps> = ({
         </div>
       )}
 
-      {/* 3. Horizontal Location Selector Pills (Clickable for Instant Switch) */}
+      {/* 3. Sleek 5-Hub Segmented Bar (100% width, No horizontal overflow) */}
       <div
-        className="no-scrollbar"
         style={{
-          display: 'flex',
-          gap: 6,
-          padding: '8px 14px',
-          background: '#FAFCFE',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+          background: '#F8FAFD',
           borderTop: '1px solid rgba(7, 18, 43, 0.08)',
-          overflowX: 'auto',
+          borderBottom: '1px solid rgba(7, 18, 43, 0.08)',
+          padding: '4px',
+          gap: 4,
           boxSizing: 'border-box',
           width: '100%'
         }}
       >
-        <span style={{ fontSize: '11px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", display: 'flex', alignItems: 'center', marginRight: 4, flexShrink: 0 }}>
-          Locations:
-        </span>
         {locations.map((loc) => {
           const isSelected = selectedId === loc.id;
           return (
@@ -549,369 +546,209 @@ export const GoogleMapsSourcing: React.FC<GoogleMapsSourcingProps> = ({
               onMouseLeave={() => setHoveredLocId(null)}
               style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                gap: 5,
-                padding: '5px 12px',
-                borderRadius: 16,
-                background: isSelected ? '#309EFE' : '#FFFFFF',
-                color: isSelected ? '#FFFFFF' : '#07122B',
-                border: `1.5px solid ${isSelected ? '#309EFE' : 'rgba(7, 18, 43, 0.14)'}`,
+                justifyContent: 'center',
+                padding: '6px 2px',
+                borderRadius: 6,
+                background: isSelected ? '#07122B' : 'transparent',
+                color: isSelected ? '#FFFFFF' : '#64748B',
+                border: isSelected ? '1px solid #07122B' : '1px solid transparent',
                 fontFamily: "'Roboto Mono', monospace",
-                fontSize: '11px',
-                fontWeight: isSelected ? 700 : 500,
                 cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-                boxShadow: isSelected ? '0 2px 8px rgba(48, 158, 254, 0.25)' : 'none',
                 transition: 'all 0.15s ease'
               }}
             >
-              <span style={{ padding: '1px 5px', background: isSelected ? 'rgba(255, 255, 255, 0.25)' : 'rgba(7, 18, 43, 0.08)', color: isSelected ? '#FFFFFF' : '#07122B', borderRadius: 3, fontSize: '9.5px', fontWeight: 800 }}>
-                {getCountryCode(loc.country)}
-              </span>
-              <span>{loc.country}</span>
-              <span style={{ opacity: isSelected ? 0.9 : 0.6 }}>· ${loc.unitCost.toFixed(2)}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3, fontSize: '9.5px', fontWeight: isSelected ? 800 : 600 }}>
+                <span style={{ opacity: isSelected ? 1 : 0.7 }}>[{getCountryCode(loc.country)}]</span>
+                <span>{loc.country}</span>
+              </div>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: isSelected ? '#309EFE' : '#07122B', marginTop: 1 }}>
+                ${loc.unitCost.toFixed(2)}
+              </div>
             </button>
           );
         })}
       </div>
 
-      {/* 4. Telemetry Grid (Exact Match to Image 2: FEED, POS, RTE, ETA) */}
+      {/* 4. Single Consolidated Telemetry Strip */}
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-          borderTop: '1px solid rgba(7, 18, 43, 0.08)',
           borderBottom: '1px solid rgba(7, 18, 43, 0.08)',
           background: '#FFFFFF',
           textAlign: 'left'
         }}
       >
-        {/* FEED */}
-        <div style={{ padding: '10px 14px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            FEED
+        <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            ROUTE
           </div>
-          <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            live
-          </div>
-        </div>
-
-        {/* POS */}
-        <div style={{ padding: '10px 14px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            POS
-          </div>
-          <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
             {activeCoord.airportCode} → SFO
           </div>
         </div>
 
-        {/* RTE */}
-        <div style={{ padding: '10px 14px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            RTE
+        <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            LEAD TIME
           </div>
-          <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            on plan
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            {activeLoc.leadTime}
           </div>
         </div>
 
-        {/* ETA */}
-        <div style={{ padding: '10px 14px' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            ETA
+        <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            QUALITY YIELD
           </div>
-          <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            {activeLoc.leadTime.split(' ')[0]} {activeLoc.leadTime.split(' ')[1]}
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#24AB5C', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            {activeLoc.quality}%
+          </div>
+        </div>
+
+        <div style={{ padding: '8px 12px' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            CARRIER HUB
+          </div>
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#309EFE', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            {activeCoord.airportCode} Direct Air
           </div>
         </div>
       </div>
 
-      {/* 5. Subfooter Label (Exact Match to Image 2: origin -> your dock | source · carrier and flight feeds) */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '8px 16px',
-          background: '#FAFCFE',
-          fontSize: '11px',
-          color: '#64748B',
-          fontFamily: "'Roboto Mono', monospace",
-          borderBottom: '1px solid rgba(7, 18, 43, 0.06)'
-        }}
-      >
-        <span>
-          [{getCountryCode(activeLoc.country)}] {activeLoc.area} ({activeLoc.country}) → your dock ({activeCoord.distance})
-        </span>
-        <span>source · carrier and flight feeds</span>
-      </div>
-
-      {/* 6. VERIFIED AVL SUPPLIER DOSSIER & DIRECT WIRE */}
-      <div style={{ padding: '16px 18px', background: '#FFFFFF' }}>
-        <div
-          style={{
-            background: 'var(--paper)',
-            borderRadius: 12,
-            border: '1px solid rgba(7, 18, 43, 0.09)',
-            padding: '16px 18px',
-            marginBottom: 14
-          }}
-        >
-          {/* Top row: Supplier title & Landed total (Locked 2-Column Grid so price never wraps) */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: 14, alignItems: 'center', marginBottom: 12 }}>
-            <div style={{ minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 7, flexWrap: 'nowrap' }}>
-                <span
-                  style={{
-                    fontFamily: "'Roboto Mono', monospace",
-                    fontSize: '10px',
-                    fontWeight: 800,
-                    letterSpacing: '0.04em',
-                    background: '#07122B',
-                    color: '#FFFFFF',
-                    padding: '2px 6px',
-                    borderRadius: 4
-                  }}
-                >
-                  {getCountryCode(activeLoc.country)}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Funnel Display', sans-serif",
-                    fontSize: '16px',
-                    fontWeight: 700,
-                    color: '#07122B',
-                    letterSpacing: '-0.01em',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  {activeLoc.supplier}
-                </span>
-                <span
-                  style={{
-                    background: 'rgba(36, 171, 92, 0.1)',
-                    color: '#24AB5C',
-                    fontSize: '9.5px',
-                    fontFamily: "'Roboto Mono', monospace",
-                    fontWeight: 700,
-                    padding: '2px 7px',
-                    borderRadius: 4,
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  AVL VERIFIED ✓
-                </span>
-              </div>
-              <div style={{ fontSize: '11px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {activeLoc.cluster} · {activeLoc.airport}
-              </div>
+      {/* 5. VERIFIED AVL ALLOCATION DOSSIER */}
+      <div style={{ padding: '14px 18px', background: '#FFFFFF' }}>
+        {/* Supplier Title & Locked Landed Total */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'nowrap' }}>
+              <span
+                style={{
+                  fontFamily: "'Roboto Mono', monospace",
+                  fontSize: '9.5px',
+                  fontWeight: 800,
+                  letterSpacing: '0.04em',
+                  background: '#07122B',
+                  color: '#FFFFFF',
+                  padding: '1px 5px',
+                  borderRadius: 3
+                }}
+              >
+                {getCountryCode(activeLoc.country)}
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Funnel Display', sans-serif",
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  color: '#07122B',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {activeLoc.supplier}
+              </span>
+              <span
+                style={{
+                  background: 'rgba(36, 171, 92, 0.1)',
+                  color: '#24AB5C',
+                  fontSize: '9px',
+                  fontFamily: "'Roboto Mono', monospace",
+                  fontWeight: 700,
+                  padding: '1px 6px',
+                  borderRadius: 3,
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                AVL VERIFIED ✓
+              </span>
             </div>
-
-            <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: "'Roboto Mono', monospace", color: '#07122B', letterSpacing: '-0.02em' }}>
-                ${totalCost.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-              </div>
-              <div style={{ fontSize: '10.5px', color: '#309EFE', fontFamily: "'Roboto Mono', monospace", fontWeight: 600, marginTop: 1 }}>
-                ${activeLoc.unitCost.toFixed(2)}/unit · {moq.toLocaleString()} pcs
-              </div>
+            <div style={{ fontSize: '10.5px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", marginTop: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {activeLoc.address} · {activeLoc.cert}
             </div>
           </div>
 
-          {/* 4 Key Metrics Bar (Waybill Telemetry Grid Style) */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-              gap: 0,
-              background: '#FFFFFF',
-              borderRadius: 8,
-              border: '1px solid rgba(7, 18, 43, 0.08)',
-              overflow: 'hidden',
-              marginBottom: 12
-            }}
-          >
-            <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-              <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>LEAD TIME</div>
-              <div style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-                {activeLoc.leadTime}
-              </div>
+          <div style={{ textAlign: 'right', flexShrink: 0 }}>
+            <div style={{ fontSize: '17px', fontWeight: 800, fontFamily: "'Roboto Mono', monospace", color: '#07122B', letterSpacing: '-0.02em' }}>
+              ${totalCost.toLocaleString(undefined, { minimumFractionDigits: 2 })}
             </div>
-            <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-              <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>QUALITY YIELD</div>
-              <div style={{ fontSize: '12px', fontWeight: 700, color: '#24AB5C', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-                {activeLoc.quality}%
-              </div>
+            <div style={{ fontSize: '10px', color: '#309EFE', fontFamily: "'Roboto Mono', monospace", fontWeight: 600 }}>
+              ${activeLoc.unitCost.toFixed(2)}/unit · {moq.toLocaleString()} pcs
             </div>
-            <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-              <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>ORDER MOQ</div>
-              <div style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-                {activeLoc.moq.toLocaleString()} pcs
-              </div>
-            </div>
-            <div style={{ padding: '8px 12px' }}>
-              <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>AIRPORT HUB</div>
-              <div style={{ fontSize: '12px', fontWeight: 700, color: '#309EFE', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-                {activeCoord.airportCode} Direct
-              </div>
-            </div>
-          </div>
-
-          {/* Facility Address & Certifications */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6, fontSize: '10.5px', fontFamily: "'Roboto Mono', monospace", color: '#64748B', borderTop: '1px solid rgba(7, 18, 43, 0.06)', paddingTop: 8 }}>
-            <span>FACILITY: {activeLoc.address} ({activeLoc.latLon})</span>
-            <span style={{ color: '#07122B', fontWeight: 600, background: 'rgba(7, 18, 43, 0.04)', padding: '2px 7px', borderRadius: 4 }}>
-              {activeLoc.cert}
-            </span>
           </div>
         </div>
 
-        {/* Direct Vendor Engagement (Calling & Texting - Clean Vector Icons Only) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
+        {/* Action Wire Buttons (Call & Text) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
           <button
             onClick={onOpenCall}
             style={{
-              padding: '9px 14px',
+              padding: '8px 12px',
               background: vendorCalledConfirmed ? 'rgba(36, 171, 92, 0.08)' : '#FFFFFF',
               border: `1px solid ${vendorCalledConfirmed ? '#24AB5C' : 'rgba(7, 18, 43, 0.16)'}`,
               color: vendorCalledConfirmed ? '#24AB5C' : '#07122B',
-              borderRadius: 8,
-              fontSize: '11.5px',
+              borderRadius: 6,
+              fontSize: '11px',
               fontFamily: "'Roboto Mono', monospace",
               fontWeight: 600,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 8,
-              boxShadow: '0 1px 3px rgba(7, 18, 43, 0.03)',
+              gap: 6,
               transition: 'all 0.15s ease'
             }}
           >
-            <Phone size={13} color={vendorCalledConfirmed ? '#24AB5C' : '#309EFE'} strokeWidth={2.2} />
+            <Phone size={12} color={vendorCalledConfirmed ? '#24AB5C' : '#309EFE'} strokeWidth={2.2} />
             <span>{vendorCalledConfirmed ? 'Call Verified ✓' : 'Direct Audio Wire'}</span>
           </button>
 
           <button
             onClick={onOpenText}
             style={{
-              padding: '9px 14px',
+              padding: '8px 12px',
               background: vendorTextAgreed ? 'rgba(36, 171, 92, 0.08)' : '#FFFFFF',
               border: `1px solid ${vendorTextAgreed ? '#24AB5C' : 'rgba(7, 18, 43, 0.16)'}`,
               color: vendorTextAgreed ? '#24AB5C' : '#07122B',
-              borderRadius: 8,
-              fontSize: '11.5px',
+              borderRadius: 6,
+              fontSize: '11px',
               fontFamily: "'Roboto Mono', monospace",
               fontWeight: 600,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 8,
-              boxShadow: '0 1px 3px rgba(7, 18, 43, 0.03)',
+              gap: 6,
               transition: 'all 0.15s ease'
             }}
           >
-            <MessageSquare size={13} color={vendorTextAgreed ? '#24AB5C' : '#309EFE'} strokeWidth={2.2} />
+            <MessageSquare size={12} color={vendorTextAgreed ? '#24AB5C' : '#309EFE'} strokeWidth={2.2} />
             <span>{vendorTextAgreed ? 'Terms Confirmed ✓' : 'Direct Supplier Chat'}</span>
           </button>
         </div>
 
-        {/* Direct Confirmation Feedback if called or texted */}
+        {/* If call or text confirmed */}
         {(vendorCalledConfirmed || vendorTextAgreed) && (
           <div
             style={{
-              marginBottom: 12,
-              padding: '8px 12px',
+              marginBottom: 10,
+              padding: '6px 10px',
               background: 'rgba(36, 171, 92, 0.08)',
-              border: '1px solid rgba(36, 171, 92, 0.25)',
+              border: '1px solid rgba(36, 171, 92, 0.2)',
               borderRadius: 6,
-              fontSize: '11px',
+              fontSize: '10.5px',
               fontFamily: "'Roboto Mono', monospace",
               color: '#24AB5C',
               display: 'flex',
               alignItems: 'center',
-              gap: 7
+              gap: 6
             }}
           >
-            <CheckCircle2 size={13} />
-            {vendorCalledConfirmed && vendorTextAgreed
-              ? 'Both voice call transcript and text terms cryptographically recorded into audit BOM.'
-              : vendorCalledConfirmed
-              ? 'Voice call transcription verified & cryptographically signed into audit log.'
-              : 'Direct supplier chat terms confirmed and added to RFQ specifications.'}
-          </div>
-        )}
-
-        {/* Top 3 Qualified Benchmarks (Clean Waybill Selection) */}
-        {!isApproved && (
-          <div style={{ marginBottom: 14 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <span style={{ fontSize: '10.5px', fontFamily: "'Roboto Mono', monospace", fontWeight: 700, color: '#07122B', letterSpacing: '0.04em' }}>
-                [3. QUALIFIED AVL BENCHMARK · TOP 3 RANKED]
-              </span>
-              <span style={{ fontSize: '10px', fontFamily: "'Roboto Mono', monospace", color: '#8896A6' }}>
-                CLICK TO SWITCH ROUTE
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {locations.slice(0, 3).map((loc, idx) => {
-                const isSelected = loc.id === selectedId;
-                const locTotal = loc.unitCost * moq;
-                return (
-                  <div
-                    key={loc.id}
-                    onClick={() => onSelectLocation(loc.id)}
-                    style={{
-                      padding: '8px 12px',
-                      borderRadius: 6,
-                      background: isSelected ? 'rgba(48, 158, 254, 0.05)' : '#FAFCFE',
-                      border: `1px solid ${isSelected ? '#309EFE' : 'rgba(7, 18, 43, 0.08)'}`,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      transition: 'all 0.15s ease'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-                      <span
-                        style={{
-                          fontSize: '9.5px',
-                          fontFamily: "'Roboto Mono', monospace",
-                          fontWeight: 800,
-                          padding: '1px 5px',
-                          borderRadius: 3,
-                          background: isSelected ? '#309EFE' : 'rgba(7, 18, 43, 0.08)',
-                          color: isSelected ? '#FFFFFF' : '#07122B'
-                        }}
-                      >
-                        RANK {idx + 1}
-                      </span>
-                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {loc.supplier}
-                      </span>
-                      <span style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace" }}>
-                        · {loc.leadTime} · {loc.quality}% Yield
-                      </span>
-                    </div>
-
-                    <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 10 }}>
-                      <span style={{ fontSize: '12px', fontWeight: 800, fontFamily: "'Roboto Mono', monospace", color: '#07122B' }}>
-                        ${locTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                      </span>
-                      <span style={{ fontSize: '10px', color: isSelected ? '#309EFE' : '#64748B', fontFamily: "'Roboto Mono', monospace", marginLeft: 6 }}>
-                        (${loc.unitCost.toFixed(2)}/pc)
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <CheckCircle2 size={12} />
+            <span>Verbal quote & chat terms cryptographically recorded to PO.</span>
           </div>
         )}
 
@@ -921,21 +758,21 @@ export const GoogleMapsSourcing: React.FC<GoogleMapsSourcingProps> = ({
             onClick={() => onApproveSourcing && onApproveSourcing(activeLoc.supplier, activeLoc.unitCost)}
             style={{
               width: '100%',
-              padding: '12px 18px',
-              fontSize: '12.5px',
+              padding: '11px 16px',
+              fontSize: '12px',
               fontFamily: "'Roboto Mono', monospace",
               fontWeight: 700,
               letterSpacing: '0.02em',
               background: '#07122B',
               color: '#FFFFFF',
               border: '1px solid rgba(48, 158, 254, 0.35)',
-              borderRadius: 8,
+              borderRadius: 6,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: 8,
-              boxShadow: '0 4px 14px rgba(7, 18, 43, 0.12)',
+              boxShadow: '0 2px 10px rgba(7, 18, 43, 0.1)',
               transition: 'all 0.15s ease'
             }}
             onMouseEnter={(e) => {
@@ -953,13 +790,13 @@ export const GoogleMapsSourcing: React.FC<GoogleMapsSourcingProps> = ({
           <div
             style={{
               color: '#24AB5C',
-              fontSize: '12px',
+              fontSize: '11.5px',
               fontFamily: "'Roboto Mono', monospace",
               fontWeight: 700,
               textAlign: 'center',
-              padding: '10px 14px',
+              padding: '9px 12px',
               background: 'rgba(36, 171, 92, 0.08)',
-              borderRadius: 8,
+              borderRadius: 6,
               border: '1px solid #24AB5C',
               display: 'flex',
               alignItems: 'center',
@@ -967,8 +804,8 @@ export const GoogleMapsSourcing: React.FC<GoogleMapsSourcingProps> = ({
               gap: 6
             }}
           >
-            <CheckCircle2 size={15} />
-            Sourcing Approved: {activeLoc.supplier} (${totalCost.toLocaleString()}) locked on invoice Line 1
+            <CheckCircle2 size={14} />
+            ALLOCATION LOCKED: {activeLoc.supplier} (${totalCost.toLocaleString(undefined, { minimumFractionDigits: 2 })}) confirmed on Line 1
           </div>
         )}
       </div>

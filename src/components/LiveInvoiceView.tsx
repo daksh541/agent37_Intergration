@@ -37,9 +37,14 @@ export interface InvoiceState {
 interface LiveInvoiceViewProps {
   invoice: InvoiceState;
   onPrint?: () => void;
+  onAllApprovedGovernance?: () => void;
+  isGovernanceApproved?: boolean;
 }
 
-export const LiveInvoiceView: React.FC<LiveInvoiceViewProps> = ({ invoice }) => {
+export const LiveInvoiceView: React.FC<LiveInvoiceViewProps> = ({
+  invoice,
+  onPrint
+}) => {
   const currentTotal =
     (invoice.sourcingApproved ? invoice.sourcingAmount : 0) +
     (invoice.customsApproved ? invoice.customsAmount : 0) +
@@ -153,19 +158,19 @@ export const LiveInvoiceView: React.FC<LiveInvoiceViewProps> = ({ invoice }) => 
         overscrollBehavior: 'contain',
         background: '#FAFBFD',
         borderLeft: '1px solid var(--cardline)',
-        padding: '24px 28px 80px 28px',
+        padding: '16px 20px 40px 20px',
         boxSizing: 'border-box'
       }}
     >
-      <div style={{ maxWidth: 640, width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
-        {/* Invoice Card Container */}
+      <div style={{ maxWidth: 640, width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {/* COMMERCIAL LANDED INVOICE */}
         <div
           className="wb-card"
           style={{
             background: '#FFFFFF',
             border: '1px solid var(--cardline)',
             borderRadius: 14,
-            padding: '24px 26px',
+            padding: '18px 20px',
             boxShadow: '0 4px 20px rgba(7, 18, 43, 0.04)',
             position: 'relative',
             overflow: 'hidden',
@@ -201,7 +206,7 @@ export const LiveInvoiceView: React.FC<LiveInvoiceViewProps> = ({ invoice }) => 
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                 <CheckCircle2 size={14} />
-                [PAID · AGENT37]
+                [PAID · DOCKET]
               </div>
               <div style={{ fontSize: '8px', fontWeight: 600, letterSpacing: '0.04em', textAlign: 'center', marginTop: 1, color: '#24AB5C' }}>
                 TxID: {invoice.paidTxId}
@@ -265,10 +270,40 @@ export const LiveInvoiceView: React.FC<LiveInvoiceViewProps> = ({ invoice }) => 
               </div>
             </div>
 
-            <div style={{ textAlign: 'right', fontFamily: "'Roboto Mono', monospace", fontSize: '11px' }}>
+            <div style={{ textAlign: 'right', fontFamily: "'Roboto Mono', monospace", fontSize: '11px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
               <div style={{ fontWeight: 700, color: 'var(--ink)' }}>{invoice.invoiceNumber}</div>
               <div style={{ color: 'var(--dim)' }}>PO: {invoice.poNumber}</div>
               <div style={{ color: 'var(--dim)' }}>Date: {invoice.orderDate}</div>
+              <button
+                onClick={() => window.print()}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 5,
+                  marginTop: 6,
+                  padding: '3px 8px',
+                  background: 'rgba(7, 18, 43, 0.04)',
+                  border: '1px solid rgba(7, 18, 43, 0.12)',
+                  borderRadius: 5,
+                  fontSize: '10px',
+                  color: 'var(--ink)',
+                  cursor: 'pointer',
+                  fontFamily: "'Roboto Mono', monospace",
+                  transition: 'all 0.15s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#309EFE';
+                  e.currentTarget.style.color = '#309EFE';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(7, 18, 43, 0.12)';
+                  e.currentTarget.style.color = 'var(--ink)';
+                }}
+                title="Print or Export Landed Invoice as PDF"
+              >
+                <Printer size={11} />
+                Export PDF
+              </button>
             </div>
           </div>
 

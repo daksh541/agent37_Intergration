@@ -76,7 +76,7 @@ export const ReceiptClosed: React.FC = () => {
             }}
           >
             That's the whole story. You described what you needed and approved
-            one payment: two actions, start to finish. AGENT37 did the eight
+            one payment: two actions, start to finish. Docket did the eight
             things on the right, absorbed a supplier failure along the way, and
             delivered on the date you named. The full record, every document and
             every decision, is filed to the order and signed.
@@ -214,7 +214,7 @@ export const ReceiptClosed: React.FC = () => {
             </div>
           </div>
 
-          {/* What AGENT37 Handled (Checklist) */}
+          {/* What Docket Handled (Checklist) */}
           <div style={{ marginBottom: 24 }}>
             <div
               style={{
@@ -227,7 +227,7 @@ export const ReceiptClosed: React.FC = () => {
                 marginBottom: 14
               }}
             >
-              WHAT AGENT37 HANDLED
+              WHAT DOCKET HANDLED
             </div>
 
             <div
@@ -278,7 +278,7 @@ export const ReceiptClosed: React.FC = () => {
             <span>Filed in Orders</span>
             <span style={{ color: '#24AB5C', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
               <ShieldCheck size={14} />
-              signed by AGENT37
+              signed by Docket
             </span>
           </div>
         </div>

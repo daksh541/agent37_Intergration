@@ -237,7 +237,7 @@ export const WaybillFlightWatch: React.FC<WaybillFlightWatchProps> = ({
         </svg>
       </div>
 
-      {/* 3. Telemetry Grid (Exact Match to Image 1: FEED, POS, RTE, ETA) */}
+      {/* 3. Single Consolidated Telemetry Bar */}
       <div
         style={{
           display: 'grid',
@@ -248,62 +248,41 @@ export const WaybillFlightWatch: React.FC<WaybillFlightWatchProps> = ({
           textAlign: 'left'
         }}
       >
-        {/* FEED */}
-        <div style={{ padding: '12px 14px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            FEED
+        <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            CORRIDOR
           </div>
-          <div style={{ fontSize: '14px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            live
-          </div>
-        </div>
-
-        {/* POS */}
-        <div style={{ padding: '12px 14px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            POS
-          </div>
-          <div style={{ fontSize: '14px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            live
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            {origin.split(' ')[0]} → LAX/SFO
           </div>
         </div>
 
-        {/* RTE */}
-        <div style={{ padding: '12px 14px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            RTE
+        <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            FEED / RADAR
           </div>
-          <div style={{ fontSize: '14px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            on plan
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#24AB5C', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            ADS-B Active
           </div>
         </div>
 
-        {/* ETA */}
-        <div style={{ padding: '12px 14px' }}>
-          <div style={{ fontSize: '10px', color: '#64748B', fontFamily: "'Roboto Mono', monospace", fontWeight: 500, letterSpacing: '0.06em' }}>
-            ETA
+        <div style={{ padding: '8px 12px', borderRight: '1px solid rgba(7, 18, 43, 0.08)' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            TRANSIT STATUS
           </div>
-          <div style={{ fontSize: '14px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
-            on time
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#07122B', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            On Schedule
           </div>
         </div>
-      </div>
 
-      {/* 4. Sub-footer Label (Exact Match to Image 1: origin -> your dock | source · carrier and flight feeds) */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '10px 16px',
-          background: '#FAFCFE',
-          fontSize: '11px',
-          color: '#64748B',
-          fontFamily: "'Roboto Mono', monospace"
-        }}
-      >
-        <span>{origin} → your dock</span>
-        <span>source · carrier and flight feeds</span>
+        <div style={{ padding: '8px 12px' }}>
+          <div style={{ fontSize: '9px', color: '#8896A6', fontFamily: "'Roboto Mono', monospace", letterSpacing: '0.06em' }}>
+            HTS CUSTOMS
+          </div>
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#309EFE', fontFamily: "'Roboto Mono', monospace", marginTop: 2 }}>
+            Pre-Cleared
+          </div>
+        </div>
       </div>
 
       {/* 5. Carrier Selector & Approval Action */}
@@ -368,7 +347,7 @@ export const WaybillFlightWatch: React.FC<WaybillFlightWatchProps> = ({
               padding: '6px'
             }}
           >
-            ✓ Shipping Approved: {activeCarrier.name} (${shippingAmount.toLocaleString()}) added to invoice line 3
+            ✓ Shipping Approved: {activeCarrier.name} (${activeCarrier.cost.toLocaleString()}) added to invoice line 3
           </div>
         )}
       </div>

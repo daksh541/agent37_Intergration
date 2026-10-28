@@ -82,7 +82,7 @@ export const FlightWatchRadar: React.FC<FlightWatchProps> = ({
             }}
           >
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#309EFE' }} className="dot-pulse" />
-            agent37 · flight watch
+            docket · flight watch
           </span>
 
           <span

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, MessageSquare, ShieldCheck, CheckCheck, Paperclip, Bot, User, CheckCircle2, X } from 'lucide-react';
+import { Send, MessageSquare, ShieldCheck, CheckCheck, Paperclip, Bot, User, CheckCircle2, X, Sparkles } from 'lucide-react';
+import { generateVendorChatReply } from '../services/geminiService';
 
 interface VendorTextingWidgetProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ export const VendorTextingWidget: React.FC<VendorTextingWidgetProps> = ({
     {
       id: 'm1',
       sender: 'agent',
-      text: `Hello ${vendorName} sales desk, AGENT37 is dispatching an autonomous procurement request for ${qty.toLocaleString()} pcs of ${partName}. Can you confirm immediate warehouse allocation at $${unitPrice.toFixed(2)}/unit?`,
+      text: `Hello ${vendorName} sales desk, Docket is dispatching an autonomous procurement request for ${qty.toLocaleString()} pcs of ${partName}. Can you confirm immediate warehouse allocation at $${unitPrice.toFixed(2)}/unit?`,
       time: '10:41 AM'
     },
     {
@@ -62,29 +63,23 @@ export const VendorTextingWidget: React.FC<VendorTextingWidgetProps> = ({
     setInputVal('');
     setIsTyping(true);
 
-    // Dynamic realistic automated vendor response
-    setTimeout(() => {
-      let reply = `Understood. We have logged this request in our ERP system. Order confirmed for ${qty.toLocaleString()} units.`;
-      const lower = text.toLowerCase();
-      if (lower.includes('rohs') || lower.includes('cert') || lower.includes('reach')) {
-        reply = "Certificate of Conformity (CoC) and REACH SVHC test report have been pre-uploaded to the broker's customs portal.";
-      } else if (lower.includes('expedite') || lower.includes('faster') || lower.includes('date')) {
-        reply = "We can priority-pack this order in 24 hours and tender directly to DHL flight D0 2841 for arrival within 3 business days.";
-      } else if (lower.includes('discount') || lower.includes('price') || lower.includes('cheaper')) {
-        reply = `We can offer an additional 2% tier discount if the order is confirmed before 18:00 UTC today. Landed price updated.`;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `m-rep-${Date.now()}`,
-          sender: 'vendor',
-          text: reply,
-          time: 'Just now'
-        }
-      ]);
-      setIsTyping(false);
-    }, 1200);
+    // Call real Gemini 2.5 Flash API for vendor technical sales reply
+    generateVendorChatReply([...messages, newMsg], vendorName, partName, qty, unitPrice)
+      .then((reply) => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: `m-rep-${Date.now()}`,
+            sender: 'vendor',
+            text: reply,
+            time: 'Just now'
+          }
+        ]);
+        setIsTyping(false);
+      })
+      .catch(() => {
+        setIsTyping(false);
+      });
   };
 
   const quickChips = [

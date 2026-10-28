@@ -150,7 +150,7 @@ export const OrderDeskChat: React.FC<OrderDeskChatProps> = ({
                 maxWidth: '42ch'
               }}
             >
-              The moment you hit send, AGENT37 goes to work. You don't fill forms,
+              The moment you hit send, Docket goes to work. You don't fill forms,
               open tickets, or brief anyone on context. Sourcing starts before you
               close the tab.
             </p>
@@ -199,7 +199,7 @@ export const OrderDeskChat: React.FC<OrderDeskChatProps> = ({
               }}
             >
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#24AB5C' }} />
-              agent37 · order desk
+              docket · order desk
             </span>
 
             <span
@@ -352,7 +352,7 @@ export const OrderDeskChat: React.FC<OrderDeskChatProps> = ({
               </div>
             </div>
 
-            {/* Chat Bubble: AGENT37 Acknowledgment */}
+            {/* Chat Bubble: Docket Acknowledgment */}
             {hasSent && (
               <div
                 style={{
@@ -382,7 +382,7 @@ export const OrderDeskChat: React.FC<OrderDeskChatProps> = ({
                     color: 'var(--dim)'
                   }}
                 >
-                  agent37 · just now
+                  docket · just now
                 </div>
               </div>
             )}

@@ -44,7 +44,7 @@ export const OpsConsole: React.FC<OpsConsoleProps> = ({ onBackToStory }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'm1',
-      sender: 'agent37',
+      sender: 'docket',
       text: 'Order Desk active. Tell me the part number, BOM, or tech spec, and I will scan DigiKey, Mouser, and Arrow in parallel.',
       timestamp: '10:00 AM'
     }
@@ -70,7 +70,7 @@ export const OpsConsole: React.FC<OpsConsoleProps> = ({ onBackToStory }) => {
       },
       {
         id: `m-${Date.now() + 1}`,
-        sender: 'agent37',
+        sender: 'docket',
         text: `Scanned 4 authorized sources. Recommended primary: ${generated[0].supplier} at $${generated[0].landedCost.toLocaleString()} landed. Fallback held in reserve with ${generated[1].supplier}.`,
         timestamp: 'Just now'
       }
@@ -125,7 +125,7 @@ export const OpsConsole: React.FC<OpsConsoleProps> = ({ onBackToStory }) => {
         ...prev,
         {
           id: `msg-${Date.now() + 1}`,
-          sender: 'agent37',
+          sender: 'docket',
           text: reply,
           timestamp: 'Just now'
         }
@@ -197,7 +197,7 @@ export const OpsConsole: React.FC<OpsConsoleProps> = ({ onBackToStory }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#24AB5C' }} className="dot-pulse" />
             <span style={{ fontWeight: 700, fontSize: '15px', color: 'var(--ink)', fontFamily: "'Funnel Display', sans-serif" }}>
-              AGENT37 Ops Console · Production Workstation
+              Docket Ops Console · Production Workstation
             </span>
           </div>
         </div>
@@ -473,7 +473,7 @@ export const OpsConsole: React.FC<OpsConsoleProps> = ({ onBackToStory }) => {
                       }}
                     >
                       <CheckCircle size={16} />
-                      Paid & Settled by AGENT37
+                      Paid & Settled by Docket
                     </div>
                   )}
                 </div>
@@ -497,7 +497,7 @@ export const OpsConsole: React.FC<OpsConsoleProps> = ({ onBackToStory }) => {
                   </div>
 
                   <p style={{ fontSize: '12px', color: 'var(--mut)', lineHeight: 1.5 }}>
-                    Zero deposit held. If {primaryQuote.supplier} allocation slips, AGENT37 auto-reroutes
+                    Zero deposit held. If {primaryQuote.supplier} allocation slips, Docket auto-reroutes
                     to {quotes[1]?.supplier} without schedule disruption.
                   </p>
                 </div>

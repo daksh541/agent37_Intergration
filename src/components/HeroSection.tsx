@@ -39,7 +39,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onScrollToNex
         }}
       />
 
-      {/* Y Combinator Badge */}
+      {/* Backed Badge */}
       <div
         style={{
           display: 'inline-flex',
@@ -55,11 +55,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onScrollToNex
           zIndex: 1
         }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-label="Y Combinator">
-          <rect width="24" height="24" rx="3" fill="#FB651E" />
-          <path d="M11 13.2 6.8 6.6h2.5L12 11l2.7-4.4h2.5L13 13.2V18h-2z" fill="#FFFFFF" />
-        </svg>
-        Backed by Y Combinator · S26
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            backgroundColor: '#309EFE',
+            boxShadow: '0 0 10px rgba(48, 158, 254, 0.8)',
+            display: 'inline-block'
+          }}
+        />
+        Backed by me
       </div>
 
       {/* Hero Headline */}
@@ -91,7 +97,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onScrollToNex
           zIndex: 1
         }}
       >
-        Say what you need. Approve the payment. AGENT37 does everything in between:
+        Say what you need. Approve the payment. Docket does everything in between:
         sourcing, negotiation, freight, customs, delivery, inventory. Built for{' '}
         <span style={{ color: '#FFFFFF', fontWeight: 500, borderBottom: '1px dotted rgba(255,255,255,0.4)' }}>
           teams that build hardware

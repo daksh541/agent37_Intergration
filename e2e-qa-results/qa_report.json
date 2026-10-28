@@ -1,0 +1,165 @@
+{
+  "summary": [
+    {
+      "timestamp": "2026-10-25T11:15:16.692Z",
+      "pageName": "Global",
+      "element": "Page Title & Head",
+      "action": "Navigate to root URL",
+      "expected": "Title includes Docket",
+      "actual": "Loaded successfully. Title: \"Docket — Autonomous Hardware Procurement on Autopilot\"",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/01_initial_load.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:17.431Z",
+      "pageName": "Navbar",
+      "element": "Story Button",
+      "action": "Click Story tab in Navbar",
+      "expected": "Switches to Story Showcase view with Hero section",
+      "actual": "Story view rendered with Hero sections",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/02_story_mode.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:18.145Z",
+      "pageName": "Navbar",
+      "element": "Ops Button",
+      "action": "Click Ops tab in Navbar",
+      "expected": "Switches to Ops Production Console with data tables",
+      "actual": "Ops console rendered with telemetry",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/03_ops_mode.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:19.048Z",
+      "pageName": "Navbar",
+      "element": "Company Hub Button",
+      "action": "Click Company Hub in topbar",
+      "expected": "Opens 7-Department Enterprise Procurement Hub modal",
+      "actual": "Company Hub modal opened with departments",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/04_company_hub_modal.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:22.540Z",
+      "pageName": "Terminal",
+      "element": "Requisition Preset Pill",
+      "action": "Click preset quick starter pill (\"drone wings 450mm\")",
+      "expected": "Ingests technical BOM and activates 4-step workflow pipeline",
+      "actual": "Requisition initiated, 4-step pipeline live",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/05_requisition_active.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:22.540Z",
+      "pageName": "Terminal",
+      "element": "4-Step Stepper Bar",
+      "action": "Verify presence of 4 distinct workflow steps in active workspace",
+      "expected": "Step 01, Step 02, Step 03, Step 04 visible",
+      "actual": "{\"step1\":true,\"step2\":true,\"step3\":true,\"step4\":true}",
+      "status": "PASS",
+      "screenshotPath": ""
+    },
+    {
+      "timestamp": "2026-10-25T11:15:22.552Z",
+      "pageName": "Terminal",
+      "element": "Cluster Pin Switch",
+      "action": "Click alternative supplier cluster ([TW] Taiwan)",
+      "expected": "Switches active supplier and recalculates route and lead time",
+      "actual": "Taiwan cluster selected",
+      "status": "PASS",
+      "screenshotPath": ""
+    },
+    {
+      "timestamp": "2026-10-25T11:15:23.476Z",
+      "pageName": "Terminal",
+      "element": "Vendor Call Modal",
+      "action": "Click Direct Audio Wire button",
+      "expected": "Opens interactive VoIP Call dialog with live waveform",
+      "actual": "VoIP Call modal rendered with audio waveforms",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/06_vendor_call_modal.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:24.992Z",
+      "pageName": "Terminal",
+      "element": "Vendor Texting Widget",
+      "action": "Click Direct Supplier Chat button",
+      "expected": "Opens encrypted text thread widget",
+      "actual": "Text modal rendered with negotiation thread",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/07_vendor_text_modal.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:26.931Z",
+      "pageName": "Terminal",
+      "element": "Lock Supplier Action",
+      "action": "Click Lock Allocation & Issue RFQ button",
+      "expected": "Locks supplier, updates live invoice, advances directly to Step 03: Flight Telemetry",
+      "actual": "Step 03 Flight Cargo active with Boeing 777F tracking",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/08_step3_flight_telemetry.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:28.239Z",
+      "pageName": "Terminal",
+      "element": "Dispatch Air Cargo Action",
+      "action": "Click Approve Flight Dispatch button",
+      "expected": "Dispatches flight, updates customs duty, advances to Step 04: Dock Scan & 3-Way Match",
+      "actual": "Step 04 Dock Scan active with optical scan & variance matrix",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/09_step4_dock_match.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:29.861Z",
+      "pageName": "Terminal",
+      "element": "3-Way Match & Settle Action",
+      "action": "Click Confirm Dock Receiving & Settle Landed Invoice",
+      "expected": "Executes zero-variance matching, stamps invoice PAID",
+      "actual": "Zero-variance reconciliation confirmed, wire stamped [PAID · DOCKET]",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/10_settled_order.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:29.861Z",
+      "pageName": "LiveInvoiceView",
+      "element": "Accumulator & Legal Audit Hash",
+      "action": "Inspect right-hand live invoice panel",
+      "expected": "Displays live cost accumulator, unit landed price, and SHA-256 hash",
+      "actual": "{\"hasInvoice\":true,\"hasAccumulator\":true,\"hasPaidStamp\":true,\"hasHash\":true}",
+      "status": "PASS",
+      "screenshotPath": ""
+    },
+    {
+      "timestamp": "2026-10-25T11:15:30.669Z",
+      "pageName": "Terminal",
+      "element": "Reset Button",
+      "action": "Click Reset button in topbar",
+      "expected": "Clears state and returns to initial Requisition Spec prompt",
+      "actual": "Requisition state cleared, initial prompt ready",
+      "status": "PASS",
+      "screenshotPath": ""
+    },
+    {
+      "timestamp": "2026-10-25T11:15:32.973Z",
+      "pageName": "Terminal",
+      "element": "Prompt Input & Enter Key",
+      "action": "Type \"Avionics Flight Controller MCU 500 pcs Nov 30\" and press Enter",
+      "expected": "Initiates new requisition docket with custom part name and quantity",
+      "actual": "New requisition ingested and radar activated",
+      "status": "PASS",
+      "screenshotPath": "/Users/saidaksh/Agent 35/e2e-qa-results/11_conversational_prompt.png"
+    },
+    {
+      "timestamp": "2026-10-25T11:15:32.973Z",
+      "pageName": "Global",
+      "element": "Console Errors & Uncaught Exceptions",
+      "action": "Monitor browser console during all interactions",
+      "expected": "Zero fatal JavaScript uncaught exceptions",
+      "actual": "No uncaught exceptions logged",
+      "status": "PASS",
+      "screenshotPath": ""
+    }
+  ],
+  "consoleErrors": []
+}

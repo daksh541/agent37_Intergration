@@ -68,9 +68,9 @@ export const BOMWatch: React.FC = () => {
               marginBottom: 20
             }}
           >
-            Hand AGENT37 your BOM and it watches every line around the clock:
+            Hand Docket your BOM and it watches every line around the clock:
             prices moving, parts approaching end-of-life, stock running thin at
-            distributors. When something changes, AGENT37 suggests the move
+            distributors. When something changes, Docket suggests the move
             early: renegotiate, switch to a vetted alternate, restock, before the
             problem ever reaches your build.
           </p>
@@ -196,7 +196,7 @@ export const BOMWatch: React.FC = () => {
               }}
             >
               <div style={{ fontWeight: 600, color: '#309EFE', marginBottom: 4, fontFamily: "'Roboto Mono', monospace" }}>
-                AGENT37 Proactive Countermeasure:
+                Docket Proactive Countermeasure:
               </div>
               {selectedAlert.detail}
             </div>

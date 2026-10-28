@@ -111,7 +111,7 @@ export const SupplierDiscovery: React.FC<SupplierDiscoveryProps> = ({
                 maxWidth: '42ch'
               }}
             >
-              AGENT37 maps every source licensed to sell your part, anywhere in the world:
+              Docket maps every source licensed to sell your part, anywhere in the world:
               authorized distributors (DigiKey, Mouser, Arrow), franchised lines, and vetted
               brokers. Then it sends RFQs to all of them at once. What takes a team
               four days of email happens here in minutes.
@@ -156,7 +156,7 @@ export const SupplierDiscovery: React.FC<SupplierDiscoveryProps> = ({
               }}
             >
               <Radio size={14} color="#309EFE" className="dot-pulse" />
-              agent37 · sourcing
+              docket · sourcing
             </span>
 
             <span

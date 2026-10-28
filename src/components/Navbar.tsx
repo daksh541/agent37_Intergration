@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Layers, Terminal } from 'lucide-react';
+import { ArrowRight, Layers, Terminal, Building2 } from 'lucide-react';
 
 interface NavbarProps {
   currentStage: number;
@@ -7,6 +7,7 @@ interface NavbarProps {
   viewMode: 'story' | 'chat' | 'ops';
   onToggleViewMode: (mode: 'story' | 'chat' | 'ops') => void;
   isDarkTheme?: boolean;
+  onOpenCompanyHub?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -14,7 +15,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSelectStage,
   viewMode,
   onToggleViewMode,
-  isDarkTheme = true
+  isDarkTheme = true,
+  onOpenCompanyHub
 }) => {
   const stages = [
     { id: 1, label: 'Requested' },
@@ -64,11 +66,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               fontFamily: "'Funnel Display', sans-serif",
               fontSize: '18px',
               fontWeight: 700,
-              letterSpacing: '-0.02em',
-              textTransform: 'lowercase'
+              letterSpacing: '-0.02em'
             }}
           >
-            agent<span style={{ color: '#309EFE' }}>37</span>
+            dock<span style={{ color: '#309EFE' }}>et</span>
           </span>
         </a>
       </div>
@@ -153,10 +154,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               color: viewMode === 'story' ? (isDarkTheme ? '#FFFFFF' : '#07122B') : isDarkTheme ? 'rgba(255,255,255,0.5)' : 'rgba(7,18,43,0.5)',
               border: 'none',
               borderRadius: 6,
-              padding: '5px 10px',
+              padding: '5px 11px',
               fontFamily: "'Roboto Mono', monospace",
               fontSize: '11px',
-              fontWeight: 500,
+              fontWeight: 600,
               cursor: 'pointer',
               transition: 'all 0.15s ease'
             }}
@@ -176,17 +177,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               color: viewMode === 'chat' ? '#07122B' : isDarkTheme ? 'rgba(255,255,255,0.5)' : 'rgba(7,18,43,0.5)',
               border: 'none',
               borderRadius: 6,
-              padding: '5px 10px',
+              padding: '5px 11px',
               fontFamily: "'Roboto Mono', monospace",
               fontSize: '11px',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
               transition: 'all 0.15s ease'
             }}
-            title="ChatGPT-Style AI Assistant"
+            title="Autonomous Terminal & Requisition Copilot"
           >
             <Terminal size={13} />
-            AI Chatbot
+            Terminal
           </button>
 
           <button
@@ -199,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               color: viewMode === 'ops' ? '#07122B' : isDarkTheme ? 'rgba(255,255,255,0.5)' : 'rgba(7,18,43,0.5)',
               border: 'none',
               borderRadius: 6,
-              padding: '5px 10px',
+              padding: '5px 11px',
               fontFamily: "'Roboto Mono', monospace",
               fontSize: '11px',
               fontWeight: 600,
@@ -210,36 +211,41 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             Ops
           </button>
+
+          {onOpenCompanyHub && (
+            <button
+              onClick={onOpenCompanyHub}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 5,
+                background: 'transparent',
+                color: isDarkTheme ? 'rgba(255,255,255,0.7)' : 'rgba(7,18,43,0.7)',
+                border: isDarkTheme ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(7,18,43,0.15)',
+                borderRadius: 6,
+                padding: '4px 10px',
+                fontFamily: "'Roboto Mono', monospace",
+                fontSize: '11px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              title="Inspect 7 Enterprise Procurement Departments"
+            >
+              <Building2 size={12} color="#309EFE" />
+              Company Hub
+            </button>
+          )}
         </div>
 
-        {viewMode !== 'chat' ? (
+        {viewMode === 'story' && (
           <button
             onClick={() => onToggleViewMode('chat')}
             className="btn-primary"
-            style={{ padding: '7px 14px', fontSize: '12.5px' }}
+            style={{ padding: '7px 14px', fontSize: '12px' }}
           >
-            Launch Workstation
+            Launch Terminal
             <ArrowRight size={13} />
-          </button>
-        ) : (
-          <button
-            onClick={() => onToggleViewMode('story')}
-            style={{
-              padding: '6px 12px',
-              fontSize: '11px',
-              color: '#07122B',
-              border: '1px solid rgba(7, 18, 43, 0.15)',
-              background: '#FFFFFF',
-              borderRadius: 8,
-              fontFamily: "'Roboto Mono', monospace",
-              cursor: 'pointer',
-              fontWeight: 600,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4
-            }}
-          >
-            Story Showcase ➔
           </button>
         )}
       </div>

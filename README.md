@@ -1,4 +1,4 @@
-# AGENT37 — Autonomous Hardware Purchasing Platform
+# Docket — Autonomous Hardware Purchasing Platform
 
 > Autonomous procurement terminal inspired by [waybill.to](https://waybill.to) and institutional aerospace supply chain operations. Ingests component specs, scans verified AVL suppliers across global hubs, simulates direct telephony and encrypted vendor chats, tracks active cargo flight paths, and automates zero-variance invoice reconciliation down to the physical warehouse dock.
 

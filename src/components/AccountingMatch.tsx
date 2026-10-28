@@ -175,7 +175,7 @@ export const AccountingMatch: React.FC<AccountingProps> = ({
               }}
             >
               <CheckCircle2 size={18} />
-              [PAID · settled by AGENT37]
+              [PAID · settled by Docket]
               <span style={{ fontSize: '11px', fontWeight: 500, color: 'rgba(36, 171, 92, 0.8)' }}>
                 TxID #TXN-88192-ACH
               </span>

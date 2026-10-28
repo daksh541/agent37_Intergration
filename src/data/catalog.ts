@@ -330,7 +330,7 @@ export const BOM_WATCH_ALERTS: BOMWatchAlert[] = [
     title: 'Line 02 · end-of-life risk',
     actionText: 'alternates found',
     actionType: 'alternates_found',
-    detail: 'PCN alert issued for leadframe revision. AGENT37 identified DRV8302 and TI pin-compatible direct drop-ins.'
+    detail: 'PCN alert issued for leadframe revision. Docket identified DRV8302 and TI pin-compatible direct drop-ins.'
   },
   {
     id: 'BW-03',

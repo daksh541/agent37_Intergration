@@ -111,7 +111,7 @@ export const DockReceivingScan: React.FC<DockReceivingScanProps> = ({
                 marginBottom: 16
               }}
             >
-              Scan the label.<br />AGENT37 knows the box.
+              Scan the label.<br />Docket knows the box.
             </h2>
 
             <p
@@ -124,7 +124,7 @@ export const DockReceivingScan: React.FC<DockReceivingScanProps> = ({
                 marginBottom: 20
               }}
             >
-              The box arrives, your team scans the label, and AGENT37 knows
+              The box arrives, your team scans the label, and Docket knows
               exactly what's inside, because it has managed this order end to end.
             </p>
 
@@ -281,7 +281,7 @@ export const DockReceivingScan: React.FC<DockReceivingScanProps> = ({
                 </div>
                 <div>
                   <div style={{ fontSize: '11px', color: 'var(--dim)', fontFamily: "'Roboto Mono', monospace" }}>
-                    #hardware · agent37 app
+                    #hardware · docket app
                   </div>
                   <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--ink)' }}>
                     Your order landed. On shelf BIN-A3-44 shortly.

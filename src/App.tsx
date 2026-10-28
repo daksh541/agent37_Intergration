@@ -19,10 +19,12 @@ import { OpsConsole } from './components/OpsConsole';
 import { ChatbotInterface } from './components/ChatbotInterface';
 import { DEFAULT_REQUEST, generateQuotesForPart, INITIAL_INVENTORY } from './data/catalog';
 import { PartRequest, SupplierQuote } from './types';
+import { CorporateCompanyHub } from './components/CorporateCompanyHub';
 
 export const App: React.FC = () => {
   const [viewMode, setViewMode] = useState<'story' | 'chat' | 'ops'>('chat');
   const [currentStage, setCurrentStage] = useState(1);
+  const [isCompanyHubOpen, setIsCompanyHubOpen] = useState(false);
   const [partRequest, setPartRequest] = useState<PartRequest>(DEFAULT_REQUEST);
   const [quotes, setQuotes] = useState<SupplierQuote[]>(generateQuotesForPart(DEFAULT_REQUEST));
   const [primaryQuote, setPrimaryQuote] = useState<SupplierQuote>(quotes[0]);
@@ -109,6 +111,7 @@ export const App: React.FC = () => {
         viewMode={viewMode}
         onToggleViewMode={setViewMode}
         isDarkTheme={viewMode === 'story' && currentStage === 0}
+        onOpenCompanyHub={() => setIsCompanyHubOpen(true)}
       />
 
 
@@ -164,7 +167,7 @@ export const App: React.FC = () => {
           {/* Resilience Failover: "A source slips. Your date doesn't." (Screenshot 5) */}
           <SourceSlipDemo />
 
-          {/* Stage 04: Receiving & Dock Scan - "Scan the label. AGENT37 knows the box." (Screenshot 11) */}
+          {/* Stage 04: Receiving & Dock Scan - "Scan the label. Docket knows the box." (Screenshot 11) */}
           <DockReceivingScan
             onScanComplete={handleDockScanComplete}
             status={status}
@@ -217,6 +220,16 @@ export const App: React.FC = () => {
           <OpsConsole onBackToStory={() => setViewMode('story')} />
         </div>
       )}
+
+      {/* Corporate Company Hub Modal (7 Enterprise Procurement Departments) */}
+      <CorporateCompanyHub
+        isOpen={isCompanyHubOpen}
+        onClose={() => setIsCompanyHubOpen(false)}
+        activePartName={partRequest.description}
+        poNumber="AG37-2026-9821"
+        totalSpend={primaryQuote.landedCost}
+        onOpenGovernance={() => setViewMode('chat')}
+      />
     </div>
   );
 };

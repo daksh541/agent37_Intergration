@@ -147,7 +147,7 @@ export const ApprovalView: React.FC<ApprovalViewProps> = ({
               }}
             >
               It's also the last. The price you approve is the whole price: parts,
-              freight, duties, clearance, and delivery in one line. AGENT37 takes
+              freight, duties, clearance, and delivery in one line. Docket takes
               that single payment and settles everyone in the chain itself: the
               source, the carrier, the broker, customs. You never touch another
               invoice on this order.
@@ -283,7 +283,7 @@ export const ApprovalView: React.FC<ApprovalViewProps> = ({
               }}
             >
               <Check size={18} strokeWidth={3} />
-              Paid · settled by AGENT37
+              Paid · settled by Docket
             </div>
           )}
 

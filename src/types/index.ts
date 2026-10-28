@@ -104,7 +104,7 @@ export interface BOMWatchAlert {
 
 export interface ChatMessage {
   id: string;
-  sender: 'user' | 'agent37';
+  sender: 'user' | 'agent37' | 'docket';
   text: string;
   timestamp: string;
   attachmentName?: string;

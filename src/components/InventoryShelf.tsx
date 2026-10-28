@@ -111,7 +111,7 @@ export const InventoryShelf: React.FC<InventoryShelfProps> = ({ inventory }) => 
                 maxWidth: '42ch'
               }}
             >
-              Six weeks later, someone on your team needs the same part. AGENT37 checks
+              Six weeks later, someone on your team needs the same part. Docket checks
               your own shelf before it checks any supplier, shows the stock you already
               own, and reserves it to their project in one click. Nothing gets bought twice.
             </p>

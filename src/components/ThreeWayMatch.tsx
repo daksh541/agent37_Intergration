@@ -121,7 +121,7 @@ export const ThreeWayMatch: React.FC<ThreeWayMatchProps> = ({
             >
               The supplier's invoice, your approved payment, and the receiving dock record
               match three ways. If a supplier accidentally overbills freight or omits a line,
-              AGENT37 catches it instantly and claims the credit note before finance touches it.
+              Docket catches it instantly and claims the credit note before finance touches it.
             </p>
 
             <div style={{ display: 'flex', gap: 10 }}>

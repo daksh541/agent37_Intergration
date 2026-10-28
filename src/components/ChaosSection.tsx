@@ -414,7 +414,7 @@ export const ChaosSection: React.FC = () => {
             color: '#FFFFFF'
           }}
         >
-          The same buy, through AGENT37.
+          The same buy, through Docket.
         </div>
       </div>
     </section>
